@@ -1,9 +1,66 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-<h1>JalanKuy - Accommodations</h1>
-<p>Ini adalah halaman list akomodasi</p>
+{% block meta %}
+    <title>Daftar Akomodasi</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
 
-</body>
-</html>
+        th, td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .tabel-daftar-akomodasi {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-utama {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock meta %}
+
+{% block content %}
+    <div class="container-utama">
+        <h1><strong>Daftar Akomodasi di {{dest_area_name}}</strong></h1>
+    </div>
+    <div class="tabel-daftar-akomodasi">
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Deskripsi</th>
+                    <th>Gambar</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                <tr>
+                    <td>{{forloop.counter}}.</td>
+                    <td>{{item.2}}</td>
+                    <td>{{item.3}}</td>
+                    <td>{{item.4}}</td>
+                    <td>
+                        <form method="get" action="{% url 'accommodation:accommodation_detail' item.1 item.0 %}">
+                            <!-- {% csrf_token %} -->
+                            <button type="submit"> Lihat Detail </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

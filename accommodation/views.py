@@ -19,26 +19,30 @@ def execute_query(query):
     return result
 
 def accommodations(request, destareaid):
-    # Cek udah login atau belum. Kalo belum redirect ke login page
+    # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM ACCOMMODATION WHERE destareaid = {destareaid};"
     result = execute_query(query)
-    # print(result) # debug
-    return render(request, 'accommodation_list.html')
+    print(result) # debug
+
+    query = f"SELECT name FROM DESTINATION_AREA WHERE ID = {destareaid}"
+    dest_area_name = execute_query(query)[0][0]
+    # print(dest_area_name) # debug
+    return render(request, 'accommodation_list.html', {'result': result, 'dest_area_name': dest_area_name})
 
 def accommodation_detail(request, destareaid, accommid):
-    # Cek udah login atau belum. Kalo belum redirect ke login page
+    # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM ACCOMMODATION WHERE destareaid = {destareaid} AND id = {accommid};"
     result = execute_query(query)
-    # print(result) # debug
+    print(result) # debug
     return render(request, 'accommodation_detail.html')
 
 def accommodation_review(request, accommid):
-    # Cek udah login atau belum. Kalo belum redirect ke login page
+    # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM ACCOMMODATION_REVIEW WHERE accommodationID = {accommid};"
     result = execute_query(query)
     # print(result) # debug
     return render(request, 'accommodation_review.html')
 
 def add_accommodation_review(request, accommid):
-    # Cek udah login atau belum. Kalo belum redirect ke login page
+    # Cek udah login atau belum. Kalo belum, redirect ke login page
     return render(request, 'add_accommodation_review.html')
