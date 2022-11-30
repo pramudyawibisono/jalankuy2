@@ -46,17 +46,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in result %}
+                {% for item in accommodation_list %}
                 <tr>
                     <td>{{forloop.counter}}.</td>
                     <td>{{item.2}}</td>
                     <td>{{item.3}}</td>
                     <td>{{item.4}}</td>
                     <td>
-                        <form method="get" action="{% url 'accommodation:accommodation_detail' item.1 item.0 %}">
-                            <!-- {% csrf_token %} -->
-                            <button type="submit"> Lihat Detail </button>
-                        </form>
+                        <button onclick="location.href = '/destination-area/{{item.1}}/accommodations/{{item.0}}';"> Lihat Detail </button>
                     </td>
                 </tr>
                 {% endfor %}

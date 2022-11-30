@@ -21,27 +21,36 @@ def execute_query(query):
 def accommodations(request, destareaid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM ACCOMMODATION WHERE destareaid = {destareaid};"
-    result = execute_query(query)
-    print(result) # debug
+    accommodation_list = execute_query(query)
+    # print(accommodation_list) # debug
 
     query = f"SELECT name FROM DESTINATION_AREA WHERE ID = {destareaid}"
     dest_area_name = execute_query(query)[0][0]
     # print(dest_area_name) # debug
-    return render(request, 'accommodation_list.html', {'result': result, 'dest_area_name': dest_area_name})
+
+    context = {'accommodation_list': accommodation_list, 'dest_area_name': dest_area_name}
+    print(context) # debug
+
+    return render(request, 'accommodation_list.html', context)
 
 def accommodation_detail(request, destareaid, accommid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM ACCOMMODATION WHERE destareaid = {destareaid} AND id = {accommid};"
-    result = execute_query(query)
-    print(result) # debug
-    return render(request, 'accommodation_detail.html')
+    accommodation = execute_query(query)[0]
+    # print(accommodation) # debug
 
-def accommodation_review(request, accommid):
-    # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM ACCOMMODATION_REVIEW WHERE accommodationID = {accommid};"
-    result = execute_query(query)
-    # print(result) # debug
-    return render(request, 'accommodation_review.html')
+    reviews = execute_query(query)
+    # print(reviews) # debug
+
+    query = f"SELECT name FROM DESTINATION_AREA WHERE ID = {destareaid}"
+    dest_area_name = execute_query(query)[0][0]
+    # print(dest_area_name) # debug
+
+    context = {'accommodation': accommodation, 'reviews': reviews, 'dest_area_name': dest_area_name}
+    print(context) # debug
+
+    return render(request, 'accommodation_detail.html', context)
 
 def add_accommodation_review(request, accommid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
