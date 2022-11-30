@@ -47,11 +47,31 @@ def accommodation_detail(request, destareaid, accommid):
     dest_area_name = execute_query(query)[0][0]
     # print(dest_area_name) # debug
 
-    context = {'accommodation': accommodation, 'reviews': reviews, 'dest_area_name': dest_area_name}
+    context = {
+        'accommodation': accommodation, 
+        'reviews': reviews, 
+        'dest_area_name': dest_area_name,
+        'ids': [destareaid, accommid]
+        }
     print(context) # debug
 
     return render(request, 'accommodation_detail.html', context)
 
-def add_accommodation_review(request, accommid):
+def add_accommodation_review(request, destareaid, accommid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
-    return render(request, 'add_accommodation_review.html')
+    reviewer = 'pram2' # debug, dummy value 
+    if request.method == 'POST':
+        form = AccommodationReviewForm(request.POST)
+        if form.is_valid():
+            score = int(form.cleaned_data['score'])
+            comment = form.cleaned_data['comment']
+            query = f"INSERT INTO ACCOMMODATION_REVIEW VALUES (\
+                DEFAULT, {accommid}, '{reviewer}', {score}, '{comment}');"
+            with connection.cursor() as cursor:
+                cursor.execute(query)
+            print(f"Sukses menambahkan review") # debug
+            return HttpResponseRedirect(f'/destination-area/{destareaid}/accommodations/{accommid}')
+    else:
+        form = AccommodationReviewForm()
+
+    return render(request, 'add_accommodation_review.html', {'form': form})

@@ -20,6 +20,7 @@
         .tabel-reviews {
             display: flex;
             justify-content: center;
+            margin-bottom: 30px;
         }
 
         .container-atas {
@@ -66,5 +67,9 @@
                 </tbody>
             </table>
         </div>
+
+        <button onclick="location.href = '/destination-area/{{ids.0}}/accommodations/{{ids.1}}/add-review';">
+             Buat Review 
+        </button>
     </center>
 {% endblock content %}
