@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect("auth/login")
+        return HttpResponseRedirect("/auth/login")
     context = {
         "user": request.user
     }
