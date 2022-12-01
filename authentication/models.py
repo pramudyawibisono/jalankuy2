@@ -8,7 +8,7 @@ class UserAccount(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     # address = models.CharField(max_length=50)
-    photo = models.ImageField(upload_to="user_profile_picture")
+    photo = models.ImageField(upload_to="static/user_profile_picture")
     
     def __str__(self):
         return f"{self.email} | {self.name}"
