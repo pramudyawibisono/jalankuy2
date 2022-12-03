@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 import main.urls as main
 import accommodation.urls as accommodation
+import authentication.urls as auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
-    path('', include(accommodation)),
+    path('destination-area/<int:destareaid>/accommodations/', include(accommodation)),
+    path('auth/', include(auth)),
 ]
