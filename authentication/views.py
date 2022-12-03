@@ -51,8 +51,13 @@ def register_view(request):
         "forms": register_form,
         "errors" : []
     }
+    print("context:", context)
+    print("valid?", register_form.is_valid())
+    print("bound?", register_form.is_bound)
     if register_form.is_valid():
+        print("form valid")
         try:
+            print("masuk try") # debug
             clean_data = register_form.cleaned_data
             # ausmsikan email admin tidak digunakan sebagi email user
             # is_exist_email = User.objects.get(email=clean_data['email']) is not None
@@ -64,12 +69,13 @@ def register_view(request):
                 password = clean_data['password'],
                 first_name = clean_data['name'],
             )
-            query = f"""INSERT INTO NON_ADMIN VALUES(
-                {clean_data['username']},{clean_data['password']},{clean_data['email']},
-                {clean_data['name']}, ''
-                );"""
-            with connection.cursor() as cursor:
-                cursor.execute(query)
+            # query1 = f"""INSERT INTO ACCOUNT VALUES('{clean_data['username']}');"""
+            # query2 = f"""INSERT INTO NON_ADMIN VALUES(
+            #     '{clean_data['username']}','{clean_data['password']}',
+            #     '{clean_data['email']}','{clean_data['name']}', '');"""
+            # with connection.cursor() as cursor:
+            #     cursor.execute(query1)
+            #     cursor.execute(query2)
             register_form.save()
         except IntegrityError as e:
             print(e)

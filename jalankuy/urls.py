@@ -22,6 +22,6 @@ import authentication.urls as auth
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
-    path('destination-area/<int:destareaid>/accommodations/', include(accommodation)),
+    path('<int:destareaid>/accommodations/', include(accommodation)),
     path('auth/', include(auth)),
 ]
