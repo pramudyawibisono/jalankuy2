@@ -86,7 +86,7 @@ def add_site_review(request, destareaid, siteid):
             with connection.cursor() as cursor:
                 cursor.execute(query)
             print(f"Sukses menambahkan review") # debug
-            return HttpResponseRedirect(f'/destination-area/{destareaid}/sites/{siteid}')
+            return HttpResponseRedirect(f'/{destareaid}/sites/{siteid}')
     else:
         form = SiteReviewForm()
 

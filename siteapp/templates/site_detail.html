@@ -35,7 +35,7 @@
     {% if is_not_available %}
 
     <h1>Data is not exist, please go back to site list page.</h1>
-    <button onclick="location.href = '/destination-area/{{destareaid}}/sites';">
+    <button onclick="location.href = '/{{destareaid}}/sites';">
         Site List
    </button>
 
@@ -74,7 +74,7 @@
             </table>
         </div>
 
-        <button onclick="location.href = '/destination-area/{{ids.0}}/sites/{{ids.1}}/add-review';">
+        <button onclick="location.href = '/{{ids.0}}/sites/{{ids.1}}/add-review';">
              Buat Review 
         </button>
     </center>
