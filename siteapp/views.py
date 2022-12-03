@@ -36,8 +36,23 @@ def sites(request, destareaid):
 def site_detail(request, destareaid, siteid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM SITE WHERE destareaid = {destareaid} AND id = {siteid};"
-    site = execute_query(query)[0]
+    site = execute_query(query)
     # print(site) # debug
+
+    # if site == []: # TASK : return ke page error agar lebih baik
+    #     return HttpResponseNotFound("Data is not exist, please go back to previous page.")
+
+    is_not_available = False
+    if site == []:
+        is_not_available = True
+        context = {
+            'destareaid': destareaid,
+            'is_not_available': is_not_available,
+        }
+
+        return render(request, 'site_detail.html',context)
+
+    site = site[0]
 
     query = f"SELECT * FROM SITE_REVIEW WHERE siteid = {siteid};"
     reviews = execute_query(query)
@@ -51,9 +66,10 @@ def site_detail(request, destareaid, siteid):
         'site': site, 
         'reviews': reviews, 
         'dest_area_name': dest_area_name,
-        'ids': [destareaid, siteid]
+        'ids': [destareaid, siteid],
+        'is_not_available': is_not_available,
         }
-    print(context) # debug
+    #print(context) # debug
 
     return render(request, 'site_detail.html', context)
 

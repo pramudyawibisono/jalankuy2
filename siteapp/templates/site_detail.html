@@ -32,6 +32,14 @@
 {% endblock meta %}
 
 {% block content %}
+    {% if is_not_available %}
+
+    <h1>Data is not exist, please go back to site list page.</h1>
+    <button onclick="location.href = '/destination-area/{{destareaid}}/sites';">
+        Site List
+   </button>
+
+    {% else %}
     <center>
         <div class="container-atas">
             <h1>Halaman detail site</h1>
@@ -41,8 +49,6 @@
         <div>
             <strong>Deskripsi:</strong>
             <p>{{site.3}}</p>
-            <strong>Harga:</strong>
-            <p>{{site.5}}</p>
         </div>
 
         <div class="tabel-reviews">
@@ -72,4 +78,6 @@
              Buat Review 
         </button>
     </center>
+
+    {% endif %}
 {% endblock content %}
