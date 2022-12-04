@@ -50,6 +50,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'accommodation',
+    'siteapp',
+    'authentication',
+    'destination_area',
+    'profil',
+    'manageData',
 ]
 
 MIDDLEWARE = [
@@ -88,13 +94,20 @@ WSGI_APPLICATION = 'jalankuy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+PGUSER = 'postgres'
+PGPASSWORD = 'SSuYrdWt1R7ICVb9uMNj'
+PGHOST = 'containers-us-west-137.railway.app'
+PGPORT = '5839'
+PGDATABASE = 'railway'
+DATABASE_URL = f'postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}'
+# postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(),
 }
+
+DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 # Set database settings automatically using DATABASE_URL.
 if PRODUCTION:
@@ -143,6 +156,9 @@ STATIC_URL = '/static/'
 # This shouldn't be included in your Git repository.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -160,3 +176,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = 'd0769862f95520'
+# EMAIL_HOST_PASSWORD = '3871ffe84c2ca5'
+# EMAIL_PORT = '2525'
+
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'abdul.rahman.saja2002@gmail.com'
+EMAIL_HOST_PASSWORD = 'CIFAJZ7RatjPbBcm'
+EMAIL_PORT = '587'
