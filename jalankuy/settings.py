@@ -95,9 +95,9 @@ WSGI_APPLICATION = 'jalankuy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 PGUSER = 'postgres'
-PGPASSWORD = 'SSuYrdWt1R7ICVb9uMNj'
-PGHOST = 'containers-us-west-137.railway.app'
-PGPORT = '5839'
+PGPASSWORD = 'GwKplQyvzghT3wjPMTkR'
+PGHOST = 'containers-us-west-144.railway.app'
+PGPORT = '7798'
 PGDATABASE = 'railway'
 DATABASE_URL = f'postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}:{PGPORT}/{PGDATABASE}'
 # postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}
