@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 import main.urls as main
 import accommodation.urls as accommodation
+import siteapp.urls as siteapp
 import authentication.urls as auth
 
 urlpatterns = [
@@ -24,4 +25,7 @@ urlpatterns = [
     path('', include(main)),
     path('<int:destareaid>/accommodations/', include(accommodation)),
     path('auth/', include(auth)),
+    path('<int:destareaid>/sites/', include(siteapp))
 ]
+
+
