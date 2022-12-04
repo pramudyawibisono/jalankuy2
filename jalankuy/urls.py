@@ -18,11 +18,14 @@ from django.urls import path, include
 import main.urls as main
 import siteapp.urls as siteapp
 import authentication.urls as auth
-import profil.urls as profil
+#import profil.urls as profil
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
     path('auth/', include(auth)),
-    path('profile/', include(profil)),
+    #path('profile/', include(profil)),
+    path('<int:destareaid>/sites/', include(siteapp))
 ]
+
+

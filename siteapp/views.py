@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .forms import *
-from django.http.response import HttpResponseRedirect, HttpResponseNotFound
+from django.http.response import HttpResponseRedirect
 from django.db import connection
 from collections import namedtuple
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def namedtuplefetchall(cursor):
@@ -18,6 +19,7 @@ def execute_query(query):
         result = cursor.fetchall()
     return result
 
+# @login_required(login_url='/auth/login')
 def sites(request, destareaid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM SITE WHERE destareaid = {destareaid};"
@@ -33,6 +35,7 @@ def sites(request, destareaid):
 
     return render(request, 'site_list.html', context)
 
+# @login_required(login_url='/auth/login')
 def site_detail(request, destareaid, siteid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM SITE WHERE destareaid = {destareaid} AND id = {siteid};"
@@ -73,9 +76,10 @@ def site_detail(request, destareaid, siteid):
 
     return render(request, 'site_detail.html', context)
 
+# @login_required(login_url='/auth/login')
 def add_site_review(request, destareaid, siteid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
-    reviewer = 'pram2' # debug, dummy value 
+    reviewer = request.user # debug, dummy value 
     if request.method == 'POST':
         form = SiteReviewForm(request.POST)
         if form.is_valid():

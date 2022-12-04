@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'main',
     'siteapp',
     'authentication',
-    'profil'
+    #'profil'
 ]
 
 MIDDLEWARE = [
