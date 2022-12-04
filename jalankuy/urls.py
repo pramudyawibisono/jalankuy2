@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 import main.urls as main
 import accommodation.urls as accommodation
+import destination_area.urls as destination_area
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
     path('', include(accommodation)),
+    path('', include(destination_area)),
 ]
