@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'accommodation',
     'siteapp',
     'authentication',
+    'destination_area',
 ]
 
 MIDDLEWARE = [

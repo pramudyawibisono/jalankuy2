@@ -19,13 +19,15 @@ import main.urls as main
 import accommodation.urls as accommodation
 import siteapp.urls as siteapp
 import authentication.urls as auth
+import destination_area.urls as destination_area
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
     path('<int:destareaid>/accommodations/', include(accommodation)),
     path('auth/', include(auth)),
-    path('<int:destareaid>/sites/', include(siteapp))
+    path('<int:destareaid>/sites/', include(siteapp)),
+    path('', include(destination_area)),
 ]
 
 
