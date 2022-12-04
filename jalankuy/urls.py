@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 import main.urls as main
 import accommodation.urls as accommodation
 import siteapp.urls as siteapp
 import authentication.urls as auth
 import destination_area.urls as destination_area
 import profil.urls as profil
-from django.conf import settings
-from django.conf.urls.static import static
+import manageData.urls as manageData
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +33,5 @@ urlpatterns = [
     path('<int:destareaid>/sites/', include(siteapp)),
     path('', include(destination_area)),
     path('profile/', include(profil)),
+    path('admin_home/', include(manageData))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

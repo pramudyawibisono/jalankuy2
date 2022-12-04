@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'siteapp',
     'authentication',
     'destination_area',
-    'profil'
+    'profil',
+    'manageData',
 ]
 
 MIDDLEWARE = [

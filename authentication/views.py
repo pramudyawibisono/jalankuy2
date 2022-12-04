@@ -41,6 +41,8 @@ def login_view(request):
             if user is not None:
                 print(user.username)
                 login(request, user)
+                if user.is_superuser:
+                    return HttpResponseRedirect("/admin_home")
                 return HttpResponseRedirect("/")
             else:
                 context.get("errors", []).append("email atau password anda salah")
