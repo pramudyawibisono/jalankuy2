@@ -20,14 +20,11 @@ def execute_query(query):
         result = cursor.fetchall()
     return result
 
-@login_required(login_url='/auth/login')
-@user_passes_test(lambda u: u.is_superuser, login_url='/')
-def home_admin(request):
 
+def home_admin(request):
     return render(request, 'home_admin.html')
 
-@login_required(login_url='/auth/login')
-@user_passes_test(lambda u: u.is_superuser, login_url='/')
+
 def view_all_list(request, idcommand):
 
     if (idcommand=="destination-area"):
@@ -69,8 +66,6 @@ def add_destination_area(request):
 
     return render(request, 'add_destination_area.html', {'form': form})
 
-@login_required(login_url='/auth/login')
-@user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_site(request):
 
     if request.method == 'POST':
