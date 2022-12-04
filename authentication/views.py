@@ -44,11 +44,12 @@ def login_view(request):
                 context.get("errors", []).append("email atau password anda salah")
     return render(request, "login.html", context)
 def register_view(request):
+    register_form = RegisterForm(request.POST)
     context = {
-        "errors" : []
+        "errors" : [],
+        "forms": register_form,
     }
     if request.method == "POST":
-        register_form = RegisterForm(request.POST)
         if register_form.is_valid():
             try:
                 clean_data = register_form.cleaned_data
@@ -72,7 +73,6 @@ def register_view(request):
                 # print(e)
                 context.get("errors", []).append("Username atau email sudah terdaftar")
                 # print(context)
-                return render(request, "register.html", context)
         else:
             START_ERROR_MESSAGE = 26
             END_ERROR_MESSAGE = -11
