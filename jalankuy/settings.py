@@ -145,6 +145,9 @@ STATIC_URL = '/static/'
 # This shouldn't be included in your Git repository.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -162,3 +165,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = 'd0769862f95520'
+# EMAIL_HOST_PASSWORD = '3871ffe84c2ca5'
+# EMAIL_PORT = '2525'
+
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'abdul.rahman.saja2002@gmail.com'
+EMAIL_HOST_PASSWORD = 'CIFAJZ7RatjPbBcm'
+EMAIL_PORT = '587'
